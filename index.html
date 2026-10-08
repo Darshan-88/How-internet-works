@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Who Owns the Internet? — an interactive visual journey through DNS, routing, HTTPS, cables, CDNs and internet infrastructure.">
+  <title>Who Owns the Internet?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="noise"></div>
+<div class="progress"><span id="progressBar"></span></div>
+
+<header class="site-header">
+  <a class="logo" href="#top">WHO OWNS<br><span>THE INTERNET?</span></a>
+  <nav>
+    <a href="#trace">TRACE</a>
+    <a href="#dns">DNS</a>
+    <a href="#map">MAP</a>
+    <a href="#build">SIMULATE</a>
+  </nav>
+  <button class="menu-button" id="menuButton">MENU</button>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orbit">
+      <span class="orbit-dot dot-a"></span><span class="orbit-dot dot-b"></span>
+      <span class="orbit-dot dot-c"></span><span class="orbit-core"></span>
+    </div>
+    <div class="hero-content reveal">
+      <p class="eyebrow">AN INTERACTIVE INTERNET EXPERIENCE · 2026</p>
+      <h1>THE INTERNET<br>IS NOT<br><em>A CLOUD.</em></h1>
+      <p class="hero-description">It's cables, servers, routers, protocols and billions of machines talking to each other.</p>
+      <button class="pill-button" data-scroll="#trace">TRACE A REQUEST <span>↗</span></button>
+    </div>
+    <div class="hero-bottom"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>001 / 010</span></div>
+  </section>
+
+  <section class="intro section-pad">
+    <div class="section-label"><span>01</span> THE BIG IDEA</div>
+    <div class="intro-grid">
+      <h2>There is no single<br><em>internet.</em></h2>
+      <p>The internet is a network of networks. Companies, governments, universities, data centers, cable operators, ISPs and open protocols each operate different pieces of the infrastructure.</p>
+    </div>
+    <div class="stat-strip">
+      <div><b>01</b><span>NETWORKS</span><small>Independent systems connected together</small></div>
+      <div><b>02</b><span>PROTOCOLS</span><small>Shared rules that let systems communicate</small></div>
+      <div><b>03</b><span>INFRASTRUCTURE</span><small>Physical and digital systems underneath it all</small></div>
+    </div>
+  </section>
+
+  <section class="trace-section section-pad" id="trace">
+    <div class="section-label"><span>02</span> TRACE A REQUEST</div>
+    <div class="section-heading">
+      <h2>One click.<br><em>Seven journeys.</em></h2>
+      <p>Type a domain and watch a simplified request travel from your browser to a server and back.</p>
+    </div>
+
+    <div class="request-box">
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <input id="urlInput" value="example.com" aria-label="Website address">
+      </div>
+      <button id="traceButton">SEND REQUEST <span>→</span></button>
+    </div>
+
+    <div class="trace-stage" id="traceStage">
+      <div class="packet" id="packet"></div>
+      <div class="trace-line"></div>
+      <div class="trace-nodes">
+        <button class="trace-node active" data-step="0"><i>01</i><strong>YOUR DEVICE</strong><small>Browser</small></button>
+        <button class="trace-node" data-step="1"><i>02</i><strong>WI-FI ROUTER</strong><small>Local network</small></button>
+        <button class="trace-node" data-step="2"><i>03</i><strong>DNS</strong><small>Find the address</small></button>
+        <button class="trace-node" data-step="3"><i>04</i><strong>ISP</strong><small>Your gateway</small></button>
+        <button class="trace-node" data-step="4"><i>05</i><strong>INTERNET</strong><small>Route packets</small></button>
+        <button class="trace-node" data-step="5"><i>06</i><strong>SERVER</strong><small>Request received</small></button>
+        <button class="trace-node" data-step="6"><i>07</i><strong>BACK TO YOU</strong><small>Page loaded</small></button>
+      </div>
+    </div>
+    <div class="trace-explainer" id="traceExplainer">
+      <span>01 / YOUR DEVICE</span><h3>Your browser starts the journey.</h3><p>The browser needs to turn a human-friendly domain into a destination and send a request across the network.</p>
+    </div>
+  </section>
+
+  <section class="dns-section section-pad" id="dns">
+    <div class="section-label"><span>03</span> DNS EXPLORER</div>
+    <div class="section-heading">
+      <h2>Names are<br><em>not addresses.</em></h2>
+      <p>DNS translates a domain name into an IP address so computers can find the destination.</p>
+    </div>
+    <div class="dns-lab">
+      <div class="dns-input-wrap"><label>DOMAIN NAME</label><div><input id="dnsInput" value="example.com"><button id="dnsLookup">LOOK UP ↗</button></div></div>
+      <div class="dns-flow">
+        <div class="dns-card"><small>YOU ASK</small><strong id="dnsDomain">example.com</strong><span>human-readable name</span></div>
+        <div class="flow-arrow">→</div>
+        <div class="dns-card"><small>DNS RESOLVER</small><strong>recursive lookup</strong><span>finds an authoritative answer</span></div>
+        <div class="flow-arrow">→</div>
+        <div class="dns-card result"><small>DESTINATION</small><strong id="dnsResult">93.184.216.34</strong><span>illustrative IP address</span></div>
+      </div>
+      <p class="micro-note">This demo uses an illustrative result; it does not perform a live DNS lookup.</p>
+    </div>
+  </section>
+
+  <section class="https-section section-pad">
+    <div class="section-label"><span>04</span> HTTPS</div>
+    <div class="https-grid">
+      <div><h2>Privacy begins<br>with <em>encryption.</em></h2><p>HTTPS uses TLS to protect data in transit between your browser and a server.</p></div>
+      <div class="security-demo">
+        <div class="security-row"><span>HTTP</span><code>password=12345</code><b class="bad">READABLE</b></div>
+        <div class="security-row secure"><span>HTTPS</span><code id="encryptedText">8F 3A 7C 91 A2 04 ...</code><b class="good">ENCRYPTED</b></div>
+        <button id="encryptButton" class="small-button">ROTATE ENCRYPTION ↻</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section section-pad" id="map">
+    <div class="section-label"><span>05</span> THE INTERNET MAP</div>
+    <div class="section-heading">
+      <h2>Networks<br>talking to <em>networks.</em></h2>
+      <p>A simplified visualization of how traffic can cross regions and network hubs.</p>
+    </div>
+    <div class="world-map">
+      <div class="map-grid"></div>
+      <div class="continent c-na">NORTH AMERICA</div><div class="continent c-eu">EUROPE</div>
+      <div class="continent c-as">ASIA</div><div class="continent c-af">AFRICA</div><div class="continent c-sa">SOUTH AMERICA</div>
+      <div class="map-node n1">US</div><div class="map-node n2">EU</div><div class="map-node n3">IN</div><div class="map-node n4">SG</div><div class="map-node n5">BR</div>
+      <span class="route r1"></span><span class="route r2"></span><span class="route r3"></span><span class="route r4"></span>
+      <div class="map-packet p1"></div><div class="map-packet p2"></div>
+      <div class="map-legend"><span><i></i> NETWORK HUB</span><span><i></i> ILLUSTRATIVE ROUTE</span></div>
+    </div>
+  </section>
+
+  <section class="cables-section section-pad">
+    <div class="section-label"><span>06</span> UNDERSEA CABLES</div>
+    <div class="cable-grid">
+      <div>
+        <h2>The internet<br>travels under<br><em>the ocean.</em></h2>
+        <p>Fiber-optic submarine cables carry huge volumes of international data. They are physical infrastructure, not an abstract cloud.</p>
+        <button class="small-button" id="cableButton">SIMULATE CABLE TRAFFIC ↗</button>
+      </div>
+      <div class="ocean">
+        <div class="land land-a">AMERICAS</div><div class="land land-b">EUROPE</div><div class="land land-c">ASIA</div>
+        <span class="cable cable-a"></span><span class="cable cable-b"></span><span class="cable cable-c"></span>
+        <div class="sub-packet cp1"></div><div class="sub-packet cp2"></div><div class="sub-packet cp3"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cdn-section section-pad">
+    <div class="section-label"><span>07</span> CDN</div>
+    <div class="section-heading"><h2>Closer content.<br><em>Faster delivery.</em></h2><p>Content delivery networks place cached content at multiple edge locations so users can often receive it from a nearby server.</p></div>
+    <div class="cdn-compare">
+      <div class="cdn-card"><small>WITHOUT CDN</small><div class="cdn-user">YOU</div><div class="cdn-path"></div><div class="cdn-server">ORIGIN SERVER<br><span>FAR AWAY</span></div><strong>Longer path</strong></div>
+      <div class="cdn-card active"><small>WITH CDN</small><div class="edge-row"><div class="edge">EDGE</div><div class="edge">EDGE</div><div class="edge">EDGE</div></div><div class="cdn-user">YOU</div><div class="cdn-path short"></div><div class="cdn-server">NEAREST EDGE<br><span>LOWER LATENCY</span></div><strong>Shorter path</strong></div>
+    </div>
+  </section>
+
+  <section class="ownership section-pad">
+    <div class="section-label"><span>08</span> WHO OWNS WHAT?</div>
+    <div class="ownership-grid">
+      <div class="owner-intro"><h2>Nobody owns<br><em>the whole thing.</em></h2><p>Different organizations control different layers and pieces of the ecosystem.</p></div>
+      <div class="owner-card"><span>01</span><h3>ISPs</h3><p>Connect homes and businesses to networks.</p></div>
+      <div class="owner-card"><span>02</span><h3>CLOUD</h3><p>Operate compute, storage and networking infrastructure.</p></div>
+      <div class="owner-card"><span>03</span><h3>CDNs</h3><p>Distribute content closer to users.</p></div>
+      <div class="owner-card"><span>04</span><h3>DNS</h3><p>Help translate names into network destinations.</p></div>
+      <div class="owner-card"><span>05</span><h3>CABLE OPERATORS</h3><p>Build and operate physical international links.</p></div>
+      <div class="owner-card"><span>06</span><h3>PROTOCOLS</h3><p>Open standards define how independent systems communicate.</p></div>
+    </div>
+  </section>
+
+  <section class="simulator section-pad" id="build">
+    <div class="section-label"><span>09</span> BUILD THE INTERNET</div>
+    <div class="section-heading"><h2>You have<br><em>$100M.</em></h2><p>Build a fictional national network. Balance cost, coverage, reliability and latency. This is a game-like model, not a real infrastructure planner.</p></div>
+    <div class="sim-grid">
+      <div class="budget-card"><small>REMAINING BUDGET</small><strong id="budget">$100M</strong><div class="meter"><span id="budgetMeter"></span></div><div id="selectionList" class="selection-list"></div><button id="resetSim" class="small-button">RESET SIMULATION</button></div>
+      <div class="infra-options">
+        <button class="infra" data-cost="35" data-name="Undersea cable" data-coverage="22" data-reliability="13" data-latency="-6"><span>01</span><b>UNDERSEA CABLE</b><small>$35M · international capacity</small><i>+</i></button>
+        <button class="infra" data-cost="25" data-name="Data center" data-coverage="18" data-reliability="20" data-latency="-10"><span>02</span><b>DATA CENTER</b><small>$25M · compute & storage</small><i>+</i></button>
+        <button class="infra" data-cost="20" data-name="Fiber network" data-coverage="28" data-reliability="15" data-latency="-13"><span>03</span><b>FIBER NETWORK</b><small>$20M · domestic reach</small><i>+</i></button>
+        <button class="infra" data-cost="10" data-name="CDN edge" data-coverage="12" data-reliability="8" data-latency="-12"><span>04</span><b>CDN EDGE</b><small>$10M · local delivery</small><i>+</i></button>
+        <button class="infra" data-cost="5" data-name="DNS infrastructure" data-coverage="5" data-reliability="9" data-latency="-2"><span>05</span><b>DNS INFRASTRUCTURE</b><small>$5M · resilient naming</small><i>+</i></button>
+        <button class="infra" data-cost="15" data-name="Satellite network" data-coverage="20" data-reliability="7" data-latency="-3"><span>06</span><b>SATELLITE NETWORK</b><small>$15M · hard-to-reach areas</small><i>+</i></button>
+      </div>
+    </div>
+    <div class="sim-stats">
+      <div><small>COVERAGE</small><strong id="coverage">20%</strong></div><div><small>RELIABILITY</small><strong id="reliability">30%</strong></div><div><small>LATENCY</small><strong id="latency">82ms</strong></div><div><small>SPENT</small><strong id="spent">$0M</strong></div>
+    </div>
+  </section>
+
+  <section class="final section-pad">
+    <div class="final-mark">∞</div>
+    <p class="eyebrow">10 / NOW YOU KNOW</p>
+    <h2>The internet<br>is <em>everywhere.</em></h2>
+    <p class="final-copy">Not in one place. Not owned by one company. It is a system of physical infrastructure, independent networks and shared protocols that work together.</p>
+    <button class="pill-button" data-scroll="#top">START AGAIN ↗</button>
+  </section>
+</main>
+
+<footer>
+  <div><strong>WHO OWNS THE INTERNET?</strong><span>An educational interactive concept.</span></div>
+  <div><span>BUILT WITH HTML · CSS · JAVASCRIPT</span><span>2026</span></div>
+</footer>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#trace">TRACE</a><a href="#dns">DNS</a><a href="#map">MAP</a><a href="#build">SIMULATE</a>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
